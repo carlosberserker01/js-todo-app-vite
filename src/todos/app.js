@@ -1,4 +1,4 @@
-import todoStore from '../store/todo.store';
+import todoStore, { Filters } from '../store/todo.store';
 import html from './app.html?raw';
 import { renderTodos } from './use-cases';
 
@@ -20,11 +20,16 @@ export const App = ( elementId ) => {
     renderTodos( ElementIDs.TodoList, todos );
   }
 
+  const updatePendingCount = () => {
+    
+  }
+
   //Cuando la funcion App() se llama
   (() => {
     const app = document.createElement('div');
     app.innerHTML = html
     document.querySelector(elementId).append( app );
+    todoStore.setFilter( Filters.All )
     displayTodos();
   })();
 
@@ -60,9 +65,22 @@ export const App = ( elementId ) => {
   })
 
   filtersLIs.forEach( li => {
-    li.addEventListener('click', (event) => {
+    li.addEventListener('click', (e) => {
       filtersLIs.forEach(el => el.classList.remove('selected'))
-      event.target.classList.add('selected')
+      e.target.classList.add('selected')
+
+      switch(e.target.text){
+        case 'Todos':
+          todoStore.setFilter( Filters.All )
+          break;
+        case 'Pendientes':
+          todoStore.setFilter( Filters.Pending )
+          break;
+        case 'Completados':
+          todoStore.setFilter( Filters.Completed )
+          break;
+      }
+      displayTodos();
     })
   })
 
