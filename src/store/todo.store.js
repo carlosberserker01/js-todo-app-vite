@@ -8,18 +8,18 @@ export const Filters = {
 
 const state = {
   todos: [
-    new Todo('Piedra del alma'),
-    new Todo('Piedra del infinito'),
-    new Todo('Piedra del tiempo'),
-    new Todo('Piedra del poder'),
-    new Todo('Piedra del realidad'),
+    // new Todo('Piedra del alma'),
+    // new Todo('Piedra del infinito'),
+    // new Todo('Piedra del tiempo'),
+    // new Todo('Piedra del poder'),
+    // new Todo('Piedra del realidad'),
   ],
   filter: Filters.All
 }
 
 const initStore = () => {
   loadStore();
-  console.log('InitStore 😎');
+  // console.log('InitStore 😎');
 }
 
 const loadStore = () => {
